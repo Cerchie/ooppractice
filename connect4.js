@@ -16,10 +16,10 @@
  */
 class Game {
   constructor(WIDTH, HEIGHT, currPlayer, board) {
-    this.WIDTH = WIDTH;
-    this.HEIGHT = HEIGHT;
-    this.currPlayer = currPlayer;
-    this.board = board;
+    this.WIDTH = 7;
+    this.HEIGHT = 6;
+    this.currPlayer = 1;
+    this.board = [];
   }
 
   makeBoard() {
@@ -56,7 +56,7 @@ class Game {
         row.append(cell);
       }
 
-      this.board.append(row);
+      board.append(row);
     }
 
   }
@@ -97,7 +97,7 @@ class Game {
     const x = +evt.target.id;
 
     // get next spot in column (if none, ignore click)
-    const y = findSpotForCol(x);
+    const y = function findSpotForCol(x);
     if (y === null) {
       return;
     }
@@ -177,6 +177,6 @@ class Game {
   }
 }
 
-let game = new Game();
+let game = new Game(this.WIDTH, this.HEIGHT, this.currPlayer, this.board);
 game.makeBoard();
 game.makeHtmlBoard();
