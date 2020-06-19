@@ -23,9 +23,9 @@ class Game {
   }
 
   makeBoard() {
-    for (let y = 0; y < HEIGHT; y++) {
+    for (let y = 0; y < this.HEIGHT; y++) {
       this.board.push(Array.from({
-        length: WIDTH
+        length: this.WIDTH
       }));
     }
   }
@@ -36,21 +36,21 @@ class Game {
     // make column tops (clickable area for adding a piece to that column)
     const top = document.createElement('tr');
     top.setAttribute('id', 'column-top');
-    top.addEventListener('click', handleClick);
+    top.addEventListener('click', this.handleClick);
 
-    for (let x = 0; x < WIDTH; x++) {
+    for (let x = 0; x < this.WIDTH; x++) {
       const headCell = document.createElement('td');
       headCell.setAttribute('id', x);
       top.append(headCell);
     }
 
-    this.board.append(top);
+    board.append(top);
 
     // make main part of board
-    for (let y = 0; y < HEIGHT; y++) {
+    for (let y = 0; y < this.HEIGHT; y++) {
       const row = document.createElement('tr');
 
-      for (let x = 0; x < WIDTH; x++) {
+      for (let x = 0; x < this.WIDTH; x++) {
         const cell = document.createElement('td');
         cell.setAttribute('id', `${y}-${x}`);
         row.append(cell);
@@ -124,7 +124,7 @@ class Game {
 
   checkForWin() {
 
-    _win(cells) {
+    function _win(cells) {
       // Check four cells to see if they're all color of current player
       //  - cells: list of four (y, x) cells
       //  - returns true if all are legal coordinates & all match currPlayer
@@ -132,15 +132,15 @@ class Game {
       return cells.every(
         ([y, x]) =>
         y >= 0 &&
-        y < HEIGHT &&
+        y < this.HEIGHT &&
         x >= 0 &&
-        x < WIDTH &&
+        x < this.WIDTH &&
         this.board[y][x] === this.currPlayer
       );
     }
 
-    for (let y = 0; y < HEIGHT; y++) {
-      for (let x = 0; x < WIDTH; x++) {
+    for (let y = 0; y < this.HEIGHT; y++) {
+      for (let x = 0; x < this.WIDTH; x++) {
         // get "check list" of 4 cells (starting here) for each of the different
         // ways to win
         const horiz = [
