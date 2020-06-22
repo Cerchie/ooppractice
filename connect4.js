@@ -23,6 +23,7 @@ class Game {
     this.board = board;
     this.makeBoard();
     this.makeHtmlBoard();
+    this.gameOver = false;
   }
 
   makeBoard() {
@@ -179,8 +180,15 @@ class Game {
   }
 
 }
+let game = new Game(7, 6, 1, []);
+game.makeBoard();
+game.makeHtmlBoard();
 
-
+class Player {
+  constructor(color) {
+    this.color = color;
+  }
+}
 
 
 
@@ -189,7 +197,3 @@ document.getElementById('start-btn').addEventListener('click', () => {
   let p2 = new Player(document.getElementById('p2-color').value);
   new Game(p1, p2);
 });
-
-let game = new Game(7, 6, 1, []);
-game.makeBoard();
-game.makeHtmlBoard();
