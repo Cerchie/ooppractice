@@ -108,7 +108,7 @@ class Game {
 
     // check for win
     if (this.checkForWin()) {
-      return endGame(`Player ${this.currPlayer} won!`);
+      return this.endGame(`Player ${this.currPlayer} won!`);
     }
 
     // check for tie
@@ -124,12 +124,8 @@ class Game {
 
   checkForWin() {
 
-    function _win(cells) {
-      // Check four cells to see if they're all color of current player
-      //  - cells: list of four (y, x) cells
-      //  - returns true if all are legal coordinates & all match currPlayer
-
-      return cells.every(
+    const _win = cells =>
+      cells.every(
         ([y, x]) =>
         y >= 0 &&
         y < this.HEIGHT &&
@@ -137,7 +133,7 @@ class Game {
         x < this.WIDTH &&
         this.board[y][x] === this.currPlayer
       );
-    }
+
 
     for (let y = 0; y < this.HEIGHT; y++) {
       for (let x = 0; x < this.WIDTH; x++) {
@@ -180,3 +176,5 @@ class Game {
 let game = new Game(7, 6, 1, []);
 game.makeBoard();
 game.makeHtmlBoard();
+let startButton = document.getElementById('#start-btn');
+startButton.addEventListener('click', this.game)
