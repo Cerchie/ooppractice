@@ -14,12 +14,15 @@
 /** makeBoard: create in-JS board structure:
  *   board = array of rows, each row is array of cells  (board[y][x])
  */
+
 class Game {
   constructor(WIDTH, HEIGHT, currPlayer, board) {
     this.WIDTH = WIDTH;
     this.HEIGHT = HEIGHT;
     this.currPlayer = currPlayer;
     this.board = board;
+    this.makeBoard();
+    this.makeHtmlBoard();
   }
 
   makeBoard() {
@@ -33,6 +36,8 @@ class Game {
   /** makeHtmlBoard: make HTML table and row of column tops. */
 
   makeHtmlBoard() {
+    const board = document.getElementById('board');
+    board.innerHTML = '';
     // make column tops (clickable area for adding a piece to that column)
     const top = document.createElement('tr');
     top.setAttribute('id', 'column-top');
@@ -170,11 +175,21 @@ class Game {
         }
       }
     }
+
   }
+
 }
+
+
+
+
+
+document.getElementById('start-btn').addEventListener('click', () => {
+  let p1 = new Player(document.getElementById('p1-color').value);
+  let p2 = new Player(document.getElementById('p2-color').value);
+  new Game(p1, p2);
+});
 
 let game = new Game(7, 6, 1, []);
 game.makeBoard();
 game.makeHtmlBoard();
-let startButton = document.getElementById('#start-btn');
-startButton.addEventListener('click', this.game)
