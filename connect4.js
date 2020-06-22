@@ -92,7 +92,7 @@ class Game {
 
   /** handleClick: handle click of column top to play piece */
 
-  this.handleClick(evt) {
+  handleClick(evt) {
     // get x from ID of clicked cell
     const x = +evt.target.id;
 
