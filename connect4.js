@@ -63,8 +63,8 @@ class Game {
 
 
   /** findSpotForCol: given column x, return top empty y (null if filled) */
-  this.findSpotForCol(x) {
-    for (let y = HEIGHT - 1; y >= 0; y--) {
+  findSpotForCol(x) {
+    for (let y = this.HEIGHT - 1; y >= 0; y--) {
       if (!this.board[y][x]) {
         return y;
       }
@@ -97,17 +97,17 @@ class Game {
     const x = +evt.target.id;
 
     // get next spot in column (if none, ignore click)
-    const y = findSpotForCol(x);
+    const y = this.findSpotForCol(x);
     if (y === null) {
       return;
     }
 
     // place piece in board and add to HTML table
     this.board[y][x] = this.currPlayer;
-    placeInTable(y, x);
+    this.placeInTable(y, x);
 
     // check for win
-    if (checkForWin()) {
+    if (this.checkForWin()) {
       return endGame(`Player ${this.currPlayer} won!`);
     }
 
